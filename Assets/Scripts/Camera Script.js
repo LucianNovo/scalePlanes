@@ -9,13 +9,13 @@ function Start () {
 }
 
 function Update () {
-transform.LookAt(target.transform);
-distanceToTarget=(transform.position-target.transform.position).magnitude-distance;
-transform.Translate(0,0,distanceToTarget*springiness*Time.deltaTime);
-transform.rotation = Quaternion.Slerp(transform.rotation, target.transform.rotation, Time.deltaTime*360);
 
-
-
+	if(target!=null){
+		transform.LookAt(target.transform);
+		distanceToTarget=(transform.position-target.transform.position).magnitude-distance;
+		transform.Translate(0,0,distanceToTarget*springiness*Time.deltaTime);
+		transform.rotation = Quaternion.Slerp(transform.rotation, target.transform.rotation, Time.deltaTime*360);
+	}
 
 
 }

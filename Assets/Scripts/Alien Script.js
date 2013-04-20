@@ -16,16 +16,18 @@ function Update () {
 	//destination.x+=Time.deltaTime/1000*(target.transform.position.x-destination.x);
 	//destination.y+=Time.deltaTime/1000*(target.transform.position.y-destination.y);
 	//destination.z+=Time.deltaTime/1000*(target.transform.position.z-destination.z);
-	vectorToDestination=(transform.position-destination);
-	destination=transform.position-vectorToDestination/vectorToDestination.magnitude*(transform.position-target.transform.position).magnitude;
-	destination+=(target.transform.position-destination)*Time.deltaTime*((transform.position-target.transform.position).magnitude)/240;
-	transform.LookAt(destination);
-	transform.Translate(0,0,speed*Time.deltaTime);
-	currentCooldown+=Time.deltaTime;
-	if ((target.transform.position-destination).magnitude<=Mathf.Pow((transform.position-target.transform.position).magnitude, 0.75) && cooldown<=currentCooldown){
-		Instantiate (bullet, transform.TransformPoint(0, 0, 12), transform.rotation);
-		currentCooldown=0;
-	}
+    if(target!= null){
+    	vectorToDestination=(transform.position-destination);
+    	destination=transform.position-vectorToDestination/vectorToDestination.magnitude*(transform.position-target.transform.position).magnitude;
+    	destination+=(target.transform.position-destination)*Time.deltaTime*((transform.position-target.transform.position).magnitude)/240;
+    	transform.LookAt(destination);
+    	transform.Translate(0,0,speed*Time.deltaTime);
+    	currentCooldown+=Time.deltaTime;
+    	if ((target.transform.position-destination).magnitude<=Mathf.Pow((transform.position-target.transform.position).magnitude, 0.75) && cooldown<=currentCooldown){
+    		Instantiate (bullet, transform.TransformPoint(0, 0, 12), transform.rotation);
+    		currentCooldown=0;
+    	}
+    }
 }	
 function OnCollisionEnter(collision : Collision)
 {
